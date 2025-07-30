@@ -10,42 +10,86 @@ const IntroScene = () => {
   const rightTextRef = useRef(null)
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom center",
-        scrub: true,
-      },
-    })
+    const ctx = gsap.context(() => {
+      // Основна анімація в scrollTrigger
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          end: "bottom center",
+          scrub: true,
+        },
+      })
+        .fromTo(
+          leftTextRef.current,
+          { x: -200, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.4,
+            ease: "power3.out",
+          }
+        )
+        .fromTo(
+          rightTextRef.current,
+          { x: 200, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.4,
+            ease: "power3.out",
+          },
+          "<"
+        )
 
-    tl.fromTo(
-      leftTextRef.current,
-      { x: -200, opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: "power2.out" }
-    ).fromTo(
-      rightTextRef.current,
-      { x: 200, opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: "power2.out" },
-      "<" // одночасно
-    )
+      // Ефект масштабування секції
+      gsap.to(sectionRef.current, {
+        scale: 0.98,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
   }, [])
 
   return (
     <section
       ref={sectionRef}
-      className="h-screen bg-white text-black flex flex-col md:flex-row items-center justify-center px-8 gap-12 bg-gradient-to-br from-white to-gray-100"
+      className="relative h-screen w-full flex flex-col md:flex-row items-center justify-center px-8 gap-12 overflow-hidden text-white bg-black"
     >
+      {/* Темний фон або можна замінити на відео */}
+      <div className="absolute inset-0 z-[-2]">
+        <img
+          src="/images/test-intro.jpg"
+          alt="Intro background"
+          className="w-full h-full object-cover opacity-30"
+        />
+        {/* Якщо хочеш відео замість фото — просто заміни */}
+        {/* <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+            <source src="/video/scene2.mp4" type="video/mp4" />
+          </video> */}
+      </div>
+
+      {/* Темна напівпрозора вуаль для контрасту тексту */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-black/60 z-[-1]"></div>
+
+      {/* Контент */}
       <div
         ref={leftTextRef}
-        className="text-4xl md:text-6xl font-extrabold max-w-md text-left leading-tight"
+        className="text-4xl md:text-6xl font-bold max-w-md leading-tight drop-shadow-[0_5px_10px_rgba(0,0,0,0.8)]"
       >
-        Everything begins<br />
-        <span className="text-indigo-600">with a scroll</span>
+        Everything begins
+        <br />
+        <span className="text-indigo-500">with a scroll</span>
       </div>
       <div
         ref={rightTextRef}
-        className="text-lg max-w-md text-gray-600 leading-relaxed md:pr-6"
+        className="text-lg max-w-md text-gray-300 leading-relaxed md:pr-6"
       >
         Scroll interactions can tell stories, guide users, and create unforgettable
         moments. This interface challenges the ordinary and invites you into a

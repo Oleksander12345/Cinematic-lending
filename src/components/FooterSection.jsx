@@ -6,9 +6,13 @@ gsap.registerPlugin(ScrollTrigger)
 
 const FooterSection = () => {
   const footerRef = useRef(null)
+  const headingRef = useRef(null)
+  const buttonRef = useRef(null)
+  const copyrightRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Загальна поява
       gsap.fromTo(
         footerRef.current,
         { y: 100, opacity: 0 },
@@ -20,7 +24,25 @@ const FooterSection = () => {
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 90%",
-            end: "bottom 80%",
+            end: "center 80%",
+            scrub: true,
+          },
+        }
+      )
+
+      // Поетапна поява контенту
+      gsap.fromTo(
+        [headingRef.current, buttonRef.current, copyrightRef.current],
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 85%",
             scrub: true,
           },
         }
@@ -33,25 +55,44 @@ const FooterSection = () => {
   return (
     <footer
       ref={footerRef}
-      className="relative min-h-[60vh] bg-gradient-to-t from-black via-gray-900 to-black text-white flex flex-col items-center justify-center px-8 py-20"
+      className="relative min-h-[60vh] w-full text-white flex flex-col items-center justify-center px-8 py-20 overflow-hidden"
     >
-      <h3 className="text-3xl md:text-5xl font-extrabold text-center mb-8 tracking-tight leading-snug drop-shadow-md">
-        Ready to build <span className="text-indigo-500">cinematic</span> experiences?
+      {/* 🌌 Фонове зображення */}
+      <div className="absolute inset-0 z-[-2]">
+        <img
+          src="/images/footer-bg.jpg"
+          alt="Footer background"
+          className="w-full h-full object-cover "
+        />
+      </div>
+
+      {/* 🌓 Градієнт */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-black/90 backdrop-blur-sm z-[-1]" />
+
+      <h3
+        ref={headingRef}
+        className="text-3xl md:text-5xl font-extrabold text-center mb-8 tracking-tight leading-snug drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+      >
+        Ready to build <span className="text-indigo-400">cinematic</span> experiences?
       </h3>
 
       <a
+        ref={buttonRef}
         href="#"
-        className="px-8 py-4 bg-white text-black text-lg font-semibold rounded-full shadow-md hover:bg-indigo-500 hover:text-white transition duration-300"
+        className="px-10 py-4 bg-white text-black text-lg font-semibold rounded-full shadow-lg hover:bg-indigo-500 hover:text-white transition duration-300 transform hover:scale-105"
       >
         Let’s Work Together
       </a>
 
-      <div className="mt-16 text-sm text-gray-500 text-center">
-        © {new Date().getFullYear()} <span className="text-gray-400">Your Name</span>. All rights reserved.
+      <div
+        ref={copyrightRef}
+        className="mt-16 text-sm text-gray-400 text-center"
+      >
+        © {new Date().getFullYear()} <span className="text-gray-500">Your Name</span>. All rights reserved.
       </div>
 
-      {/* Декоративний елемент (опціонально) */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500" />
+      {/* Декоративна лінія */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500/60" />
     </footer>
   )
 }

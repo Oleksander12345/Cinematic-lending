@@ -14,6 +14,12 @@ h1, h2, h3 {
   @apply tracking-tight;
 }
 
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
 button {
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
 }

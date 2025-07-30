@@ -11,7 +11,6 @@ const HeroSection = () => {
   const ctaRef = useRef(null)
   const overlayRef = useRef(null)
 
-  // ⬇️ Функція прокрутки до наступного екрану
   const handleScroll = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -20,6 +19,7 @@ const HeroSection = () => {
   }
 
   useEffect(() => {
+    // Overlay fade
     gsap.to(overlayRef.current, {
       opacity: 0,
       duration: 1.5,
@@ -27,13 +27,15 @@ const HeroSection = () => {
       delay: 0.5,
     })
 
+    // Text animations
     gsap.fromTo(
       headingRef.current,
-      { y: 100, opacity: 0 },
+      { y: 100, opacity: 0, scale: 0.95 },
       {
         y: 0,
         opacity: 1,
-        duration: 1.4,
+        scale: 1,
+        duration: 1.6,
         delay: 1,
         ease: "expo.out",
       }
@@ -41,28 +43,29 @@ const HeroSection = () => {
 
     gsap.fromTo(
       subheadingRef.current,
-      { y: 100, opacity: 0 },
+      { y: 60, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1.2,
-        delay: 1.5,
+        duration: 1.4,
+        delay: 1.8,
         ease: "expo.out",
       }
     )
 
     gsap.fromTo(
       ctaRef.current,
-      { y: 100, opacity: 0 },
+      { y: 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1,
-        delay: 2,
+        duration: 1.2,
+        delay: 2.4,
         ease: "expo.out",
       }
     )
 
+    // Zoom-out effect on scroll
     gsap.to(sectionRef.current, {
       scale: 0.95,
       scrollTrigger: {
@@ -78,35 +81,43 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white overflow-hidden"
-      style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1629731410005-2091e94b44ac?auto=format&fit=crop&w=1500&q=80)",
-      }}
+      className="relative h-screen w-full overflow-hidden flex items-center justify-center text-white"
     >
-      {/* Overlay for fade-reveal */}
+      {/* Відеофон */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-[-2]"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/video/abstract-cinematic.mp4" type="video/mp4" />
+      </video>
+
+      {/* Затінення для fade-in ефекту */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-black opacity-70 z-10"
+        className="absolute inset-0 bg-black opacity-70 z-[-1]"
       ></div>
 
-      <div className="relative z-20 text-center px-6">
+      {/* Контент */}
+      <div className="relative z-10 text-center px-6 max-w-3xl">
         <h1
           ref={headingRef}
-          className="text-5xl md:text-7xl font-black tracking-tight leading-tight drop-shadow-lg"
+          className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-[0_5px_10px_rgba(0,0,0,0.8)]"
         >
           Unlock the Cinematic Web
         </h1>
         <p
           ref={subheadingRef}
-          className="mt-6 text-lg md:text-xl text-gray-200"
+          className="mt-6 text-lg md:text-xl text-gray-200 backdrop-blur-md"
         >
-          A smooth scroll-based experience like never before.
+          A scroll-based immersive experience like never before.
         </p>
         <button
           ref={ctaRef}
           onClick={handleScroll}
-          className="mt-10 px-8 py-4 bg-white text-black text-lg font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-all duration-300"
+          className="mt-10 px-8 py-4 bg-white text-black text-lg font-semibold rounded-lg shadow-xl hover:bg-gray-100 transition-all duration-300"
         >
           Start Scrolling
         </button>

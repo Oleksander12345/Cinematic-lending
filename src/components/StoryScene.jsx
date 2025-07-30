@@ -12,16 +12,17 @@ const StoryScene = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         itemsRef.current,
-        { y: 100, opacity: 0 },
+        { y: 100, opacity: 0, filter: "blur(10px)" },
         {
           y: 0,
           opacity: 1,
+          filter: "blur(0px)",
           stagger: 0.3,
-          duration: 1.2,
-          ease: "power3.out",
+          duration: 1.5,
+          ease: "power4.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 70%",
             end: "bottom 20%",
             scrub: true,
           },
@@ -50,22 +51,37 @@ const StoryScene = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-28 bg-gradient-to-b from-white to-gray-100 text-black flex flex-col items-center justify-center px-6 md:px-12"
+      className="relative min-h-screen py-32 px-6 md:px-12 text-white flex flex-col items-center justify-center overflow-hidden"
     >
-      <h2 className="text-4xl md:text-6xl font-extrabold mb-20 text-center leading-tight tracking-tight text-gray-800 drop-shadow">
+      {/* Фонове зображення */}
+      <div className="absolute inset-0 z-[-2]">
+        <img
+          src="/images/story-bg.jpg"
+          alt="story background"
+          className="w-full h-full object-cover opacity-30"
+        />
+      </div>
+
+      {/* Темна вуаль */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 backdrop-blur-md z-[-1]" />
+
+      <h2 className="text-5xl md:text-6xl font-extrabold mb-20 text-center leading-tight tracking-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.8)]">
         The Scroll Story
       </h2>
-      <div className="w-full max-w-4xl space-y-16">
+
+      <div className="w-full max-w-4xl space-y-16 z-10">
         {steps.map((step, index) => (
           <div
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
-            className="bg-white border-l-4 border-indigo-500 p-8 md:p-10 rounded-2xl shadow-lg transition duration-500 hover:shadow-2xl"
+            className="bg-black/50 backdrop-blur-xl border-l-4 border-indigo-500 p-8 md:p-10 rounded-2xl shadow-xl hover:shadow-2xl transition duration-700"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-indigo-600 tracking-wide">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-indigo-400 tracking-wide">
               {step.title}
             </h3>
-            <p className="text-gray-700 text-lg md:text-xl leading-relaxed tracking-normal">{step.text}</p>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed tracking-normal">
+              {step.text}
+            </p>
           </div>
         ))}
       </div>
