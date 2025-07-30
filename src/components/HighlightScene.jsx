@@ -42,7 +42,6 @@ const HighlightScene = () => {
       ref={sectionRef}
       className="relative h-screen w-full overflow-hidden flex items-center justify-center px-6 md:px-12 text-white"
     >
-      {/* 🔥 Фон — відео або зображення */}
       <div className="absolute inset-0 z-[-2]">
         <img
           src="/images/highlight-bg.png"
@@ -51,10 +50,8 @@ const HighlightScene = () => {
         />
       </div>
 
-      {/* 🌓 Затемнення */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90 backdrop-blur-sm z-[-1]" />
 
-      {/* 🌟 Цитата */}
       <h2
         ref={quoteRef}
         className="text-center text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-5xl text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.8)]"

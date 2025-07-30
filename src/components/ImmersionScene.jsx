@@ -12,7 +12,6 @@ const ImmersionScene = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin секції
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
@@ -22,7 +21,6 @@ const ImmersionScene = () => {
         pinSpacing: true,
       })
 
-      // Поетапна поява тексту
       gsap.fromTo(
         headingRef.current,
         { y: 80, opacity: 0 },
@@ -53,7 +51,6 @@ const ImmersionScene = () => {
         }
       )
 
-      // Масштаб і яскравість відео
       gsap.to(videoRef.current, {
         scale: 1.1,
         filter: "brightness(0.6)",
@@ -75,7 +72,6 @@ const ImmersionScene = () => {
       ref={sectionRef}
       className="relative h-screen w-full overflow-hidden flex items-center justify-center text-white"
     >
-      {/* 🎥 Відеофон */}
       <video
         ref={videoRef}
         className="absolute top-0 left-0 w-full h-full object-cover scale-105 transition duration-1000 will-change-transform"
@@ -86,10 +82,8 @@ const ImmersionScene = () => {
         playsInline
       />
 
-      {/* 🌓 Затінення + розмиття */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 backdrop-blur-md z-10" />
 
-      {/* Текст */}
       <div className="relative z-20 px-6 text-center max-w-2xl">
         <h2
           ref={headingRef}

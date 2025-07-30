@@ -11,7 +11,6 @@ const IntroScene = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Основна анімація в scrollTrigger
       gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -41,8 +40,6 @@ const IntroScene = () => {
           },
           "<"
         )
-
-      // Ефект масштабування секції
       gsap.to(sectionRef.current, {
         scale: 0.98,
         scrollTrigger: {
@@ -62,23 +59,19 @@ const IntroScene = () => {
       ref={sectionRef}
       className="relative h-screen w-full flex flex-col md:flex-row items-center justify-center px-8 gap-12 overflow-hidden text-white bg-black"
     >
-      {/* Темний фон або можна замінити на відео */}
+
       <div className="absolute inset-0 z-[-2]">
         <img
           src="/images/test-intro.jpg"
           alt="Intro background"
           className="w-full h-full object-cover opacity-30"
         />
-        {/* Якщо хочеш відео замість фото — просто заміни */}
-        {/* <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="/video/scene2.mp4" type="video/mp4" />
-          </video> */}
+
       </div>
 
-      {/* Темна напівпрозора вуаль для контрасту тексту */}
+
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-black/60 z-[-1]"></div>
 
-      {/* Контент */}
       <div
         ref={leftTextRef}
         className="text-4xl md:text-6xl font-bold max-w-md leading-tight drop-shadow-[0_5px_10px_rgba(0,0,0,0.8)]"

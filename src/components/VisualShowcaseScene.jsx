@@ -20,7 +20,6 @@ const VisualShowcaseScene = () => {
         },
       })
 
-      // Паралакс і масштаб зображення
       tl.fromTo(
         imageRef.current,
         { scale: 1.2, y: 60, opacity: 0 },
@@ -32,7 +31,6 @@ const VisualShowcaseScene = () => {
           ease: "power3.out",
         }
       )
-      // Текст — плавний зсув і з’явлення
         .fromTo(
           textRef.current,
           { y: 100, opacity: 0 },
@@ -54,7 +52,6 @@ const VisualShowcaseScene = () => {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 px-8 py-20 text-white overflow-hidden"
     >
-      {/* 🎥 Фонове відео або зображення */}
       <div className="absolute inset-0 z-[-2]">
         <video
           className="w-full h-full object-cover opacity-40"
@@ -65,15 +62,10 @@ const VisualShowcaseScene = () => {
         >
           <source src="/videos/visual.mp4" type="video/mp4" />
         </video>
-        {/* Або, якщо хочеш статичне зображення:
-        <img src="/images/visual-bg.jpg" className="w-full h-full object-cover opacity-30" />
-        */}
       </div>
 
-      {/* 🟣 Темна вуаль поверх відео */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-black/50 z-[-1]"></div>
 
-      {/* Зображення з ефектом появи */}
       <img
         ref={imageRef}
         src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=700&q=80"
@@ -81,7 +73,6 @@ const VisualShowcaseScene = () => {
         className="w-72 md:w-[400px] rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.5)] object-cover transition-transform duration-700"
       />
 
-      {/* Контент */}
       <div
         ref={textRef}
         className="max-w-md text-center md:text-left space-y-6 px-2"

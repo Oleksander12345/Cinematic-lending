@@ -53,7 +53,6 @@ const StoryScene = () => {
       ref={sectionRef}
       className="relative min-h-screen py-32 px-6 md:px-12 text-white flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Фонове зображення */}
       <div className="absolute inset-0 z-[-2]">
         <img
           src="/images/story-bg.jpg"
@@ -62,7 +61,6 @@ const StoryScene = () => {
         />
       </div>
 
-      {/* Темна вуаль */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 backdrop-blur-md z-[-1]" />
 
       <h2 className="text-5xl md:text-6xl font-extrabold mb-20 text-center leading-tight tracking-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.8)]">

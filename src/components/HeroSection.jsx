@@ -83,7 +83,6 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative h-screen w-full overflow-hidden flex items-center justify-center text-white"
     >
-      {/* Відеофон */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-[-2]"
         autoPlay
@@ -91,16 +90,13 @@ const HeroSection = () => {
         muted
         playsInline
       >
-        <source src="/video/abstract-cinematic.mp4" type="video/mp4" />
+        {/* <source src="/videos/visual-bg.mp4" type="video/mp4" /> */}
       </video>
-
-      {/* Затінення для fade-in ефекту */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-black opacity-70 z-[-1]"
       ></div>
 
-      {/* Контент */}
       <div className="relative z-10 text-center px-6 max-w-3xl">
         <h1
           ref={headingRef}

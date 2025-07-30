@@ -12,7 +12,6 @@ const FooterSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Загальна поява
       gsap.fromTo(
         footerRef.current,
         { y: 100, opacity: 0 },
@@ -30,7 +29,6 @@ const FooterSection = () => {
         }
       )
 
-      // Поетапна поява контенту
       gsap.fromTo(
         [headingRef.current, buttonRef.current, copyrightRef.current],
         { y: 50, opacity: 0 },
@@ -57,16 +55,14 @@ const FooterSection = () => {
       ref={footerRef}
       className="relative min-h-[60vh] w-full text-white flex flex-col items-center justify-center px-8 py-20 overflow-hidden"
     >
-      {/* 🌌 Фонове зображення */}
       <div className="absolute inset-0 z-[-2]">
         <img
           src="/images/footer-bg.jpg"
           alt="Footer background"
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover opacity-80" 
         />
       </div>
 
-      {/* 🌓 Градієнт */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-black/90 backdrop-blur-sm z-[-1]" />
 
       <h3
@@ -91,10 +87,9 @@ const FooterSection = () => {
         © {new Date().getFullYear()} <span className="text-gray-500">Your Name</span>. All rights reserved.
       </div>
 
-      {/* Декоративна лінія */}
       <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500/60" />
     </footer>
-  )
+)
 }
 
 export default FooterSection
