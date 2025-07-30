@@ -19,7 +19,6 @@ const HeroSection = () => {
   }
 
   useEffect(() => {
-    // Overlay fade
     gsap.to(overlayRef.current, {
       opacity: 0,
       duration: 1.5,
@@ -27,7 +26,6 @@ const HeroSection = () => {
       delay: 0.5,
     })
 
-    // Text animations
     gsap.fromTo(
       headingRef.current,
       { y: 100, opacity: 0, scale: 0.95 },
@@ -64,8 +62,6 @@ const HeroSection = () => {
         ease: "expo.out",
       }
     )
-
-    // Zoom-out effect on scroll
     gsap.to(sectionRef.current, {
       scale: 0.95,
       scrollTrigger: {

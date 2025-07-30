@@ -5,6 +5,11 @@
 - Version 1 (Moody Cinematic): https://cinematic-lending-str1.vercel.app/
 - Version 2 (Minimalist Variation): https://mojito-cocktails-seven.vercel.app/
 
+## 📷 Video explaining
+
+- Version 1 (Moody Cinematic): https://drive.google.com/file/d/1nI1ZmLraJfXSq3RaCudg0cAG5Q8msDLf/view?usp=sharing
+- Version 2 (Minimalist Variation): https://drive.google.com/file/d/1jN5EmQL4dtVN4M-4lhwZk4aOxcfUvoRP/view?usp=sharing
+
 ## 💡 About the Project
 
 I recreated the scroll-driven cinematic experience inspired by the reference site, focusing on immersive motion and storytelling through animations, video, and layout.
